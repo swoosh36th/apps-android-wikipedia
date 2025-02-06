@@ -27,6 +27,7 @@ val skipButton = listOf(
     "fragment_onboarding_skip_button",
     "onboarding_skip"
 )
+
 val onboardingPageIndicatorLocator = listOf(TabLayout::class.java, "view_onboarding_page_indicator")
 
 val continueButton = listOf(
