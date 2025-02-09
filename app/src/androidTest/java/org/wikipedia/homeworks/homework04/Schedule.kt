@@ -55,21 +55,21 @@ class Schedule {
 
   operator fun invoke(function: Schedule.() -> Unit) = function()
 
-  fun monday(setSchedule: () -> Unit) = setDay(MONDAY, setSchedule)
+  fun monday(setSchedule: () -> Unit) = setScheduleForPresentDay(MONDAY, setSchedule)
 
-  fun tuesday(setSchedule: () -> Unit) = setDay(TUESDAY, setSchedule)
+  fun tuesday(setSchedule: () -> Unit) = setScheduleForPresentDay(TUESDAY, setSchedule)
 
-  fun wednesday(setSchedule: () -> Unit) = setDay(WEDNESDAY, setSchedule)
+  fun wednesday(setSchedule: () -> Unit) = setScheduleForPresentDay(WEDNESDAY, setSchedule)
 
-  fun thursday(setSchedule: () -> Unit) = setDay(THURSDAY, setSchedule)
+  fun thursday(setSchedule: () -> Unit) = setScheduleForPresentDay(THURSDAY, setSchedule)
 
-  fun friday(setSchedule: () -> Unit) = setDay(FRIDAY, setSchedule)
+  fun friday(setSchedule: () -> Unit) = setScheduleForPresentDay(FRIDAY, setSchedule)
 
-  fun saturday(setSchedule: () -> Unit) = setDay(SATURDAY, setSchedule)
+  fun saturday(setSchedule: () -> Unit) = setScheduleForPresentDay(SATURDAY, setSchedule)
 
-  fun sunday(setSchedule: () -> Unit) = setDay(SUNDAY, setSchedule)
+  fun sunday(setSchedule: () -> Unit) = setScheduleForPresentDay(SUNDAY, setSchedule)
 
-  private fun setDay(presentDay: Days, setSchedule: () -> Unit) {
+  private fun setScheduleForPresentDay(presentDay: Days, setSchedule: () -> Unit) {
     this.presentDay = presentDay
     setSchedule()
     this.presentDay = null
