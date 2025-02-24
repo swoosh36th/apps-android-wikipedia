@@ -12,5 +12,5 @@ class DataAndPrivacyPagerItem(matcher: Matcher<View>): KViewPagerItem<DataAndPri
   val logoImageLocator = KImageView(matcher) { withId(R.id.imageViewCentered) }
   val primaryHeader = KTextView(matcher) { withId(R.id.primaryTextView) }
   val secondaryHeader = KTextView(matcher) { withId(R.id.secondaryTextView) }
-  val getStartedButton = KButton { withId(R.id.fragment_onboarding_done_button) }
+  val getStartedButton = KButton(matcher) { withId(R.id.fragment_onboarding_done_button) }
 }

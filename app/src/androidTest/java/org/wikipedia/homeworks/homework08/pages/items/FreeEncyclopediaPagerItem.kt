@@ -22,5 +22,5 @@ class FreeEncyclopediaPagerItem(matcher: Matcher<View>): KViewPagerItem<FreeEncy
     }
   )
   val addOrEditLanguageButton = KButton(matcher) { withId(R.id.addLanguageButton) }
-  val continueButton = KButton { withId(R.id.fragment_onboarding_forward_button) }
+  val continueButton = KButton(matcher) { withId(R.id.fragment_onboarding_forward_button) }
 }
