@@ -20,12 +20,10 @@ class OnboardingScreenTest : TestCase() {
   fun verifyOnboardingSkipButton() {
     val skipButtonText = "Skip"
     run {
-      step("Verify Onboarding Skip button") {
-        OnboardingScreen.skipButton {
-          isDisplayed()
-          isClickable()
-          hasText(skipButtonText)
-        }
+      OnboardingScreen.skipButton {
+        step("Verify Onboarding Skip button is displayed") { isDisplayed() }
+        step("Verify Onboarding Skip button has text [$skipButtonText]") { hasText(skipButtonText) }
+        step("Verify Onboarding Skip button is clickable") { isClickable() }
       }
     }
   }
@@ -35,7 +33,7 @@ class OnboardingScreenTest : TestCase() {
     val continueButtonText = "Continue"
     val getStartedButtonText = "Get started"
     run {
-      OnboardingScreen.onboardingItems.apply {
+      OnboardingScreen.onboardingItems {
         step("Verify Continue button has text [$continueButtonText] at 'Free Encyclopedia' pager item") {
           childAt<FreeEncyclopediaPagerItem>(0) {
             continueButton {
@@ -60,16 +58,10 @@ class OnboardingScreenTest : TestCase() {
   fun verifyFreeEncyclopediaOnboardingScreenIsOpened() {
     val primaryHeaderText = "The Free Encyclopedia"
     run {
-      OnboardingScreen.onboardingItems.apply {
-        step("Verify logo image is displayed") {
-          childAt<FreeEncyclopediaPagerItem>(0) { logoImageLocator.isDisplayed() }
-        }
-        step("Verify primary header is visible") {
-          childAt<FreeEncyclopediaPagerItem>(0) { primaryHeader.isVisible() }
-        }
-        step("Verify primary header text is [$primaryHeaderText]") {
-          childAt<FreeEncyclopediaPagerItem>(0) { primaryHeader.containsText(primaryHeaderText) }
-        }
+      OnboardingScreen.onboardingItems.childAt<FreeEncyclopediaPagerItem>(0) {
+        step("Verify logo image is displayed") { logoImageLocator.isDisplayed() }
+        step("Verify primary header is visible") { primaryHeader.isVisible() }
+        step("Verify primary header text is [$primaryHeaderText]") { primaryHeader.containsText(primaryHeaderText) }
       }
     }
   }
@@ -78,7 +70,7 @@ class OnboardingScreenTest : TestCase() {
   fun verifyNewWaysToExploreOnboardingScreenIsOpened() {
     val primaryHeaderText = "New ways to explore"
     run {
-      OnboardingScreen.onboardingItems.apply {
+      OnboardingScreen.onboardingItems {
         step("Verify logo image is displayed") {
           childAt<NewWaysToExplorePagerItem>(1) { logoImageLocator.isDisplayed() }
         }
