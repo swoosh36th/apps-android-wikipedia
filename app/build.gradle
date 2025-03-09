@@ -42,6 +42,7 @@ android {
         testApplicationId 'org.wikipedia.test'
         testInstrumentationRunner = "com.kaspersky.kaspresso.runner.KaspressoRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
+        testInstrumentationRunnerArguments.leaveApp = 'true'
 
         vectorDrawables.useSupportLibrary = true
 
