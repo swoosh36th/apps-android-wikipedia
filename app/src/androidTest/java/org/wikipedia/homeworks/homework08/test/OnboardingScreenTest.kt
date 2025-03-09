@@ -11,7 +11,7 @@ import org.wikipedia.homeworks.homework08.pages.items.NewWaysToExplorePagerItem
 import org.wikipedia.homeworks.homework08.pages.items.languages.LanguageItem
 import org.wikipedia.main.MainActivity
 
-class OnboardingUiScreenTest : TestCase() {
+class OnboardingScreenTest : TestCase() {
   @get:Rule
   val activityScenarioRule: ActivityScenarioRule<MainActivity> =
     ActivityScenarioRule(MainActivity::class.java)
