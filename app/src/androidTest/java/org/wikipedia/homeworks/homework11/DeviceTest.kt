@@ -7,6 +7,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.wikipedia.homeworks.homework09.pages.explore.ExploreScreen
 import org.wikipedia.homeworks.homework09.pages.explore.items.NewsCardViewItem
+import org.wikipedia.homeworks.homework09.pages.explore.items.NewsViewItem
+import org.wikipedia.homeworks.homework09.pages.fragment.FragmentNewsScreen
+import org.wikipedia.homeworks.homework09.pages.fragment.items.CardViewItem
+import org.wikipedia.homeworks.homework09.pages.news.NewsScreen
 import org.wikipedia.homeworks.homework09.pages.onboarding.OnboardingScreen
 import org.wikipedia.main.MainActivity
 import java.util.Locale
@@ -81,21 +85,43 @@ class DeviceTest : TestCase() {
   @Test
   fun deviceNetworkTurnsOffAndOnTest() {
     before {
+      device.network.enable()
     }.after {
       device.network.enable()
     }.run {
+
       OnboardingScreen {
         step("Verify Onboarding header is displayed") { onboardingScreenHeader.isDisplayed() }
         step("Click skip button") { skipButton.click() }
       }
-      step("Turn off network") { device.network.disable() }
-      step("Open article") {
-        ExploreScreen.items.childAt<NewsCardViewItem>(1) { newsHeader.click() }
+
+      ExploreScreen {
+        step("Verify 'Explore' screen is opened") { exploreScreenHeader.isDisplayed() }
+        step("Navigate to 'In the news' block") {
+          items.childAt<NewsCardViewItem>(7) {
+            step("Verify 'In the news' header is displayed") { newsHeader.isDisplayed() }
+            step("Navigate to 3rd news in 'In the news' block") {
+              items.childAt<NewsViewItem>(2) { newsTextLocator.click() }
+            }
+
+            FragmentNewsScreen {
+              step("Verify 'Fragment news' screen is opened") { fragmentNewsHeader.isDisplayed() }
+              step("Turn off network") { device.network.disable() }
+              step("Open 'News' screen") { items.childAt<CardViewItem>(1) { cardSubtitleLocator.click() } }
+
+              ErrorScreen {
+                step("Verify error header is displayed") { errorHeader.isDisplayed() }
+                step("Turn on network") { device.network.enable() }
+                step("Tap 'Retry' button") { retryButton.click() }
+              }
+
+              NewsScreen {
+                step("Verify 'News' screen is opened") { webContentLocator.isDisplayed() }
+              }
+            }
+          }
+        }
       }
-      step("Verify network turn off header is displayed") {}
-      step("Turn on network") { device.network.enable() }
-      step("Click Retry button") {}
-      step("Verify article header is displayed") {}
     }
   }
 
